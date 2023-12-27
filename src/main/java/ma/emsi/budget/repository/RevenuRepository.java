@@ -19,4 +19,7 @@ public interface RevenuRepository extends JpaRepository<Revenu, Integer> {
 
 	@Query("Select r from Revenu r where r.id = :id")
 	Revenu finById(@Param("id") int id);
+
+	@Query("SELECT r FROM Revenu r WHERE r.compte.utilisateur.id = :userId")
+    List<Revenu> findRevenusByUser(@Param("userId") int userId);
 }

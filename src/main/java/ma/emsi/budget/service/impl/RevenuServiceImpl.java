@@ -78,4 +78,9 @@ public class RevenuServiceImpl implements RevenuService {
 
 	}
 
+	@Override
+	public List<Revenu> findByUser(int id) {
+		return revenuRepository.findRevenusByUser(id);
+	}
+
 }

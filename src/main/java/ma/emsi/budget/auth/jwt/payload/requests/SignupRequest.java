@@ -1,6 +1,5 @@
 package ma.emsi.budget.auth.jwt.payload.requests;
 
-import java.util.Set;
 import jakarta.validation.constraints.*;
 
 public class SignupRequest {
@@ -12,8 +11,6 @@ public class SignupRequest {
 	@Size(max = 50)
 	@Email
 	private String email;
-
-	private Set<String> role;
 
 	@NotBlank
 	@Size(min = 6, max = 40)
@@ -41,13 +38,5 @@ public class SignupRequest {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public Set<String> getRole() {
-		return this.role;
-	}
-
-	public void setRole(Set<String> role) {
-		this.role = role;
 	}
 }

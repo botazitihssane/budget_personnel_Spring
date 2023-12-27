@@ -14,4 +14,6 @@ public interface CompteService {
 	void update(Compte e);
 
 	void delete(int id);
+
+	List<Compte> findComptesByUser(int id);
 }

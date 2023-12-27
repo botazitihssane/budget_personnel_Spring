@@ -1,5 +1,7 @@
 package ma.emsi.budget.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,5 +14,5 @@ public interface CompteRepository extends JpaRepository<Compte, Integer> {
 	Compte findCompteById(@Param("id") int id);
 
 	@Query("SELECT c FROM Compte c WHERE c.utilisateur.id = :userId")
-	Compte findCompteByUser(@Param("userId") int userId);
+	List<Compte> findComptesByUser(@Param("userId") int userId);
 }

@@ -50,4 +50,9 @@ public class CompteServiceImpl implements CompteService {
 		compteRepository.deleteById(id);
 	}
 
+	@Override
+	public List<Compte> findComptesByUser(int id) {
+		return compteRepository.findComptesByUser(id);
+	}
+
 }

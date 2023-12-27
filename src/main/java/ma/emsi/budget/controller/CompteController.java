@@ -25,6 +25,7 @@ public class CompteController {
 	@Autowired
 	private CompteService compteService;
 
+
 	@PostMapping(value = "/compte", produces = { "application/json", "application/xml" }, consumes = {
 			"application/json", "application/xml" })
 	public ResponseEntity<Compte> createCompte(@RequestBody Compte u) {
@@ -33,19 +34,25 @@ public class CompteController {
 	}
 
 	@GetMapping(value = "/comptes", produces = { "application/json", "application/xml" })
-	public ResponseEntity<List<Compte>> getAllUsers() {
+	public ResponseEntity<List<Compte>> getAllCompte() {
 		List<Compte> result = compteService.getAll();
 		return ResponseEntity.ok().body(result);
 	}
 
 	@GetMapping(value = "/compte/id/{id}", produces = { "application/json", "application/xml" })
-	public ResponseEntity<Compte> getUser(@PathVariable int id) {
+	public ResponseEntity<Compte> getCompteById(@PathVariable int id) {
 		Compte result = compteService.getById(id);
+		return ResponseEntity.ok().body(result);
+	}
+	
+	@GetMapping(value = "/compte/user/id/{id}", produces = { "application/json", "application/xml" })
+	public ResponseEntity<List<Compte>> getCompteByUserId(@PathVariable int id) {
+		List<Compte> result = compteService.findComptesByUser(id);
 		return ResponseEntity.ok().body(result);
 	}
 
 	@DeleteMapping(value = "/compte/{id}", produces = { "application/json", "application/xml" })
-	public ResponseEntity<Void> deleteUser(@PathVariable int id) {
+	public ResponseEntity<Void> deleteCompte(@PathVariable int id) {
 		compteService.delete(id);
 		return ResponseEntity.noContent().build();
 	}

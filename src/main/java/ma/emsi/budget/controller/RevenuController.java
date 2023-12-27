@@ -44,6 +44,12 @@ public class RevenuController {
 		Revenu revenu = revenuService.getById(id);
 		return ResponseEntity.ok().body(revenu);
 	}
+	
+	@GetMapping(value = "/revenu/user/id/{id}", produces = { "application/json", "application/xml" })
+	public ResponseEntity<List<Revenu>> getRevenuByUser(@PathVariable int id) {
+		List<Revenu> revenu = revenuService.findByUser(id);
+		return ResponseEntity.ok().body(revenu);
+	}
 
 	@PutMapping(value = "/revenu", produces = { "application/json", "application/xml" }, consumes = {
 			"application/json", "application/xml" })

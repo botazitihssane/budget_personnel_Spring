@@ -16,5 +16,7 @@ public interface RevenuService {
 	void delete(int id);
 
 	void processRevenu(Revenu revenu);
+	
+	List<Revenu> findByUser(int id);
 
 }
