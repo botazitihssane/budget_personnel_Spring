@@ -8,6 +8,8 @@ public interface ObjectifService {
 	Objectif add(Objectif e);
 
 	List<Objectif> getAll();
+	
+	List<Objectif> getByUSER(int id);
 
 	Objectif getById(int id);
 

@@ -49,4 +49,9 @@ public class ObjectifServiceImpl implements ObjectifService {
 		objectifRepository.deleteById(id);
 	}
 
+	@Override
+	public List<Objectif> getByUSER(int id) {
+		return objectifRepository.findObjectifsByUtilisateur(id);
+	}
+
 }

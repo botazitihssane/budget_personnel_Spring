@@ -43,12 +43,19 @@ public class ObjectifController {
 		Objectif result = objectifService.getById(id);
 		return ResponseEntity.ok().body(result);
 	}
+	
+	@GetMapping(value = "/objectif/user/id/{id}", produces = { "application/json", "application/xml" })
+	public ResponseEntity<List<Objectif>> getObjectifsByUser(@PathVariable int id) {
+		List<Objectif> result = objectifService.getByUSER(id);
+		return ResponseEntity.ok().body(result);
+	}
 
 	@DeleteMapping(value = "/objectif/{id}", produces = { "application/json", "application/xml" })
 	public ResponseEntity<Void> deleteUser(@PathVariable int id) {
 		objectifService.delete(id);
 		return ResponseEntity.noContent().build();
 	}
+
 
 	@PutMapping(value = "/objectif", produces = { "application/json", "application/xml" }, consumes = {
 			"application/json", "application/xml" })
