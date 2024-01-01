@@ -30,11 +30,6 @@ public class Epargne extends Transaction {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Epargne(int id, LocalDate date, double montant, Compte compte) {
-		super(id, date, montant, compte);
-		// TODO Auto-generated constructor stub
-	}
-
 	@Override
 	public void processTransaction() {
 	}

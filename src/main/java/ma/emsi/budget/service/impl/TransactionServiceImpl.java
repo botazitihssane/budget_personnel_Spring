@@ -1,10 +1,12 @@
 package ma.emsi.budget.service.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ma.emsi.budget.model.Compte;
 import ma.emsi.budget.model.Depense;
 import ma.emsi.budget.model.Epargne;
 import ma.emsi.budget.model.Revenu;
@@ -70,6 +72,26 @@ public class TransactionServiceImpl implements TransactionService {
 		} else if (transaction instanceof Depense) {
 			depenseService.processDepense((Depense) transaction);
 		}
+	}
+
+	@Override
+	public List<Transaction> findTransactionsByDate(LocalDate date) {
+		return transactionRepository.findTransactionsByDate(date);
+	}
+
+	@Override
+	public List<Transaction> findTransactionsByMontantSuperieurA(double montant) {
+		return transactionRepository.findTransactionsByMontantSuperieurA(montant);
+	}
+
+	@Override
+	public List<Transaction> findTransactionsByCompte(Compte compte) {
+		return transactionRepository.findTransactionsByCompte(compte);
+	}
+
+	@Override
+	public List<Transaction> findTransactionsByUser(int id) {
+		return transactionRepository.findTransactionsByUser(id);
 	}
 
 }

@@ -1,5 +1,6 @@
 package ma.emsi.budget.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,24 @@ public class TransactionController {
 	@GetMapping(value = "/transactions", produces = { "application/json", "application/xml" })
 	public ResponseEntity<List<Transaction>> getAllUsers() {
 		List<Transaction> result = transactionService.getAll();
+		return ResponseEntity.ok().body(result);
+	}
+	
+	@GetMapping(value = "/transaction/user/id/{id}", produces = { "application/json", "application/xml" })
+	public ResponseEntity<List<Transaction>> getAllByUser(@PathVariable int id) {
+		List<Transaction> result = transactionService.findTransactionsByUser(id);
+		return ResponseEntity.ok().body(result);
+	}
+	
+	@GetMapping(value = "/transaction/date/{date}", produces = { "application/json", "application/xml" })
+	public ResponseEntity<List<Transaction>> getByDate(@PathVariable LocalDate date) {
+		List<Transaction> result = transactionService.findTransactionsByDate(date);
+		return ResponseEntity.ok().body(result);
+	}
+	
+	@GetMapping(value = "/transaction/montant/{montant}", produces = { "application/json", "application/xml" })
+	public ResponseEntity<List<Transaction>> getByMontant(@PathVariable double montant) {
+		List<Transaction> result = transactionService.findTransactionsByMontantSuperieurA(montant);
 		return ResponseEntity.ok().body(result);
 	}
 
