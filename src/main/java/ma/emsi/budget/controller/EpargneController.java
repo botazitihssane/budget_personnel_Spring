@@ -45,6 +45,12 @@ public class EpargneController {
 		return ResponseEntity.ok().body(epargne);
 	}
 
+	@GetMapping(value = "/epargne/user/id/{id}", produces = { "application/json", "application/xml" })
+	public ResponseEntity<List<Epargne>> getEpargneByUserId(@PathVariable int id) {
+		List<Epargne> epargne = epargneService.getByUser(id);
+		return ResponseEntity.ok().body(epargne);
+	}
+
 	@PutMapping(value = "/epargne", produces = { "application/json", "application/xml" }, consumes = {
 			"application/json", "application/xml" })
 	public ResponseEntity<Void> updateEpargne(@RequestBody Epargne epargne) {

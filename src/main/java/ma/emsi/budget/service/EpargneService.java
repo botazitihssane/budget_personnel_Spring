@@ -8,6 +8,8 @@ public interface EpargneService {
 	Epargne add(Epargne e);
 
 	List<Epargne> getAll();
+	
+	List<Epargne> getByUser(int id);
 
 	Epargne getById(int id);
 

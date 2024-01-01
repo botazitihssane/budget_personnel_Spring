@@ -93,4 +93,9 @@ public class EpargneServiceImpl implements EpargneService {
 		compte.setSolde(nouveauSoldeCompte);
 		compteService.update(compte);
 	}
+
+	@Override
+	public List<Epargne> getByUser(int id) {
+		return epargneRepository.findByUser(id);
+	}
 }
