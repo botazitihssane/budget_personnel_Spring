@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
@@ -13,9 +14,20 @@ public class Categorie {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@NotBlank(message = "Le nom de la catégorie ne peut pas être vide")
 	private String nom;
+
+	@ManyToOne
+	private Utilisateur utilisateur;
+
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
+
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
 
 	public int getId() {
 		return id;
@@ -33,10 +45,11 @@ public class Categorie {
 		this.nom = nom;
 	}
 
-	public Categorie(int id, String nom) {
+	public Categorie(int id, String nom, Utilisateur utilisateur) {
 		super();
 		this.id = id;
 		this.nom = nom;
+		this.utilisateur = utilisateur;
 	}
 
 	public Categorie() {

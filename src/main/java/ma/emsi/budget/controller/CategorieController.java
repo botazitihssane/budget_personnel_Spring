@@ -43,6 +43,12 @@ public class CategorieController {
 		Categorie result = categorieService.getById(id);
 		return ResponseEntity.ok().body(result);
 	}
+	
+	@GetMapping(value = "/categorie/user/id/{id}", produces = { "application/json", "application/xml" })
+	public ResponseEntity<List<Categorie>> getCategoriesByUser(@PathVariable int id) {
+		List<Categorie> result = categorieService.getByUser(id);
+		return ResponseEntity.ok().body(result);
+	}
 
 	@DeleteMapping(value = "/categorie/{id}", produces = { "application/json", "application/xml" })
 	public ResponseEntity<Void> deleteUser(@PathVariable int id) {

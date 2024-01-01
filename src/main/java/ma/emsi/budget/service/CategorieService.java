@@ -14,4 +14,6 @@ public interface CategorieService {
 	void update(Categorie e);
 
 	void delete(int id);
+	
+	List<Categorie> getByUser(int id);
 }

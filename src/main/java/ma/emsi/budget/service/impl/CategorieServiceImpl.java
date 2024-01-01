@@ -44,4 +44,9 @@ public class CategorieServiceImpl implements CategorieService {
 		categorieRepository.deleteById(id);
 	}
 
+	@Override
+	public List<Categorie> getByUser(int id) {
+		return categorieRepository.getByUser(id);
+	}
+
 }
