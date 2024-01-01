@@ -39,11 +39,6 @@ public class DepenseController {
 		return ResponseEntity.ok().body(depenses);
 	}
 	
-	@GetMapping(value = "/depenses", produces = { "application/json", "application/xml" })
-	public ResponseEntity<List<Depense>> getAllDepensesByUser() {
-		List<Depense> depenses = depenseService.getAll();
-		return ResponseEntity.ok().body(depenses);
-	}
 
 	@GetMapping(value = "/depense/id/{id}", produces = { "application/json", "application/xml" })
 	public ResponseEntity<Depense> getDepenseById(@PathVariable int id) {
