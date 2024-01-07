@@ -25,4 +25,7 @@ public interface BudgetCategorieRepository extends JpaRepository<BudgetCategorie
 	BudgetCategorie findByCategorieAndUtilisateur(@Param("categorie") int categorie,
 			@Param("utilisateur") int utilisateur);
 
+	@Query("SELECT bc FROM BudgetCategorie bc WHERE bc.budget.utilisateur.id = :utilisateurId AND bc.budget.mois = :month AND bc.budget.annee = :year")
+	List<BudgetCategorie> findBudgetCategoriesForCurrentMonthAndUser(@Param("utilisateurId") int utilisateurId,
+			@Param("month") int month, @Param("year") int year);
 }

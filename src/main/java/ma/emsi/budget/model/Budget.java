@@ -1,8 +1,5 @@
 package ma.emsi.budget.model;
 
-import java.time.Month;
-import java.time.Year;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,8 +13,8 @@ public class Budget {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private Month mois;
-	private Year annee;
+	private int mois;
+	private int annee;
 	@ManyToOne
 	private Utilisateur utilisateur;
 
@@ -29,19 +26,19 @@ public class Budget {
 		this.id = id;
 	}
 
-	public Month getMois() {
+	public int getMois() {
 		return mois;
 	}
 
-	public void setMois(Month mois) {
+	public void setMois(int mois) {
 		this.mois = mois;
 	}
 
-	public Year getAnnee() {
+	public Integer getAnnee() {
 		return annee;
 	}
 
-	public void setAnnee(Year annee) {
+	public void setAnnee(Integer annee) {
 		this.annee = annee;
 	}
 
@@ -53,7 +50,7 @@ public class Budget {
 		this.utilisateur = utilisateur;
 	}
 
-	public Budget(int id, Month mois, Year annee, Utilisateur utilisateur) {
+	public Budget(int id, int mois, int annee, Utilisateur utilisateur) {
 		super();
 		this.id = id;
 		this.mois = mois;

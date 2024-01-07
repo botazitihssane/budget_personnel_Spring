@@ -1,5 +1,7 @@
 package ma.emsi.budget.controller;
 
+import java.time.Month;
+import java.time.Year;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ma.emsi.budget.model.Budget;
+import ma.emsi.budget.model.Utilisateur;
 import ma.emsi.budget.service.BudgetService;
+import ma.emsi.budget.service.UtilisateurService;
 
 @RestController
 @RequestMapping("/budget")
@@ -24,6 +28,9 @@ import ma.emsi.budget.service.BudgetService;
 public class BudgetController {
 	@Autowired
 	private BudgetService budgetService;
+
+	@Autowired
+	private UtilisateurService utilisateurService;
 
 	@PostMapping(value = "/budget", produces = { "application/json", "application/xml" }, consumes = {
 			"application/json", "application/xml" })
@@ -41,6 +48,24 @@ public class BudgetController {
 	@GetMapping(value = "/budget/id/{id}", produces = { "application/json", "application/xml" })
 	public ResponseEntity<Budget> getUser(@PathVariable int id) {
 		Budget result = budgetService.getById(id);
+		return ResponseEntity.ok().body(result);
+	}
+
+	@GetMapping(value = "/getBudgetsByUser/{userId}", produces = { "application/json", "application/xml" })
+	public ResponseEntity<List<Budget>> getBudgetsByUser(@PathVariable int userId) {
+		List<Budget> result = budgetService.findByUtilisateur(userId);
+		return ResponseEntity.ok().body(result);
+	}
+
+	@GetMapping(value = "/getBudgetByUserAndMonthAndYear/{userId}/{month}/{year}", produces = { "application/json",
+			"application/xml" })
+	public ResponseEntity<Budget> getBudgetByUserAndMonthAndYear(@PathVariable int userId, @PathVariable int month,
+			@PathVariable int year) {
+		Utilisateur utilisateur = utilisateurService.getById(userId);
+		Month budgetMonth = Month.of(month);
+		Year budgetYear = Year.of(year);
+
+		Budget result = budgetService.findByUtilisateurAndMoisAndAnnee(utilisateur, budgetMonth, budgetYear);
 		return ResponseEntity.ok().body(result);
 	}
 

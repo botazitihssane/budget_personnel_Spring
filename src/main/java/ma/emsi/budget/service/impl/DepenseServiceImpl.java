@@ -128,4 +128,14 @@ public class DepenseServiceImpl implements DepenseService {
 		}
 	}
 
+	@Override
+	public List<Depense> findByUser(int id) {
+		return depenseRepository.findDepenseByUser(id);
+	}
+
+	@Override
+	public List<Depense> findByCurrentMonthAndUser(int id) {
+	    return depenseRepository.findDepensesByCurrentMonthAndUser(id);
+	}
+
 }

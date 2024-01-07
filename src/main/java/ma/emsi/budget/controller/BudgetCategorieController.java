@@ -44,6 +44,14 @@ public class BudgetCategorieController {
 		return ResponseEntity.ok().body(result);
 	}
 
+	@GetMapping(value = "/budgetCategories/currentMonth/{utilisateur}", produces = { "application/json",
+			"application/xml" })
+	public ResponseEntity<List<BudgetCategorie>> getBudgetCategoriesForCurrentMonthAndUser(
+			@PathVariable int utilisateur) {
+		List<BudgetCategorie> result = budgetCategorieService.getBudgetCategoriesForCurrentMonthAndUser(utilisateur);
+		return ResponseEntity.ok().body(result);
+	}
+
 	@DeleteMapping(value = "/budgetCategorie/{id}", produces = { "application/json", "application/xml" })
 	public ResponseEntity<Void> deleteUser(@PathVariable int id) {
 		budgetCategorieService.delete(id);

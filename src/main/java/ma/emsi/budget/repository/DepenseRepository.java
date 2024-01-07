@@ -19,4 +19,11 @@ public interface DepenseRepository extends JpaRepository<Depense, Integer> {
 
 	@Query("SELECT d FROM Depense d WHERE d.id = :id")
 	Depense findDepenseById(@Param("id") int id);
+	
+	@Query("Select d from Depense d where d.compte.utilisateur = :id")
+	List<Depense> findDepenseByUser(@Param("id") int id);
+
+	@Query("SELECT d FROM Depense d WHERE MONTH(d.date) = MONTH(CURRENT_DATE) AND YEAR(d.date) = YEAR(CURRENT_DATE) AND d.compte.utilisateur.id = :userId")
+	List<Depense> findDepensesByCurrentMonthAndUser(@Param("userId") int userId);
+
 }

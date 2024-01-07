@@ -38,12 +38,23 @@ public class DepenseController {
 		List<Depense> depenses = depenseService.getAll();
 		return ResponseEntity.ok().body(depenses);
 	}
-	
 
 	@GetMapping(value = "/depense/id/{id}", produces = { "application/json", "application/xml" })
 	public ResponseEntity<Depense> getDepenseById(@PathVariable int id) {
 		Depense depense = depenseService.getById(id);
 		return ResponseEntity.ok().body(depense);
+	}
+
+	@GetMapping(value = "/depense/user/id/{id}", produces = { "application/json", "application/xml" })
+	public ResponseEntity<List<Depense>> getDepenseByUser(@PathVariable int id) {
+		List<Depense> depense = depenseService.findByUser(id);
+		return ResponseEntity.ok().body(depense);
+	}
+
+	@GetMapping(value = "/depense/user/current-month/{id}", produces = { "application/json", "application/xml" })
+	public ResponseEntity<List<Depense>> getDepensesByCurrentMonthAndUser(@PathVariable int id) {
+		List<Depense> depenses = depenseService.findByCurrentMonthAndUser(id);
+		return ResponseEntity.ok().body(depenses);
 	}
 
 	@PutMapping(value = "/depense", produces = { "application/json", "application/xml" }, consumes = {

@@ -16,4 +16,7 @@ public interface BudgetCategorieService {
 	void update(BudgetCategorie e);
 
 	void delete(int id);
+
+	List<BudgetCategorie> getBudgetCategoriesForCurrentMonthAndUser(int utilisateur);
+
 }
